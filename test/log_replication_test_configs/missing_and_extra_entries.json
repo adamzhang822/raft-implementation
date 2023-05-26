@@ -1,0 +1,162 @@
+{
+  "_comment": "Test log replication when follower has both stale and extra entries (lots of uncommited entries from prev terms that leader does not have)",
+  "addresses": [
+    {
+      "ip": "127.0.0.1",
+      "port": 54985,
+      "internal_port": 54986,
+      "role": "leader",
+      "term": 6,
+      "next_index": [7],
+      "match_index": [0],
+      "log": [
+        {
+          "term": 1,
+          "index": 1,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 2,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "cat" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 3,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 4,
+          "index": 4,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs x 2!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 4,
+          "index": 5,
+          "command": {
+            "endpoint": "message",
+            "method": "GET",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 6,
+          "index": 6,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "pig" }
+          },
+          "result": ""
+        }
+      ]
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 54987,
+      "internal_port": 54988,
+      "log": [
+        {
+          "term": 1,
+          "index": 1,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 2,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "cat" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 3,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 2,
+          "index": 4,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs x 2!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 2,
+          "index": 5,
+          "command": {
+            "endpoint": "message",
+            "method": "GET",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+        {
+          "term": 3,
+          "index": 6,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs x 3!" }
+          },
+          "result": ""
+        },
+        {
+          "term": 3,
+          "index": 7,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "pig" }
+          },
+          "result": ""
+        }
+      ]
+    }
+  ]
+}

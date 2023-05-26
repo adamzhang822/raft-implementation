@@ -1,0 +1,30 @@
+{
+  "_comment": "Test that candidate with stale logs will not get voted",
+  "addresses": [
+    {
+      "ip": "127.0.0.1",
+      "port": 54985,
+      "internal_port": 54986,
+      "role": "candidate",
+      "term": 999
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 54987,
+      "internal_port": 54988,
+      "term": 5,
+      "log": [
+        {
+          "term": 1,
+          "index": 1,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "_comment": "Test that candidate converts follower when it receives heartbeats from another leader with same or greater term ",
+  "addresses": [
+    {
+      "ip": "127.0.0.1",
+      "port": 54985,
+      "internal_port": 54986,
+      "role": "candidate",
+      "term": 5
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 54987,
+      "internal_port": 54988,
+      "term": 999,
+      "voted_for": 1,
+      "role": "leader",
+      "next_index": [0],
+      "match_index": [0]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "_comment": "Test that it is ok for a Follower to receive duplicate AppendEntries RPC (leader telling it to add log that's already been added). The follower already has all the logs, but leader tries to replicate it in follower from index 0",
+  "addresses": [
+    {
+      "ip": "127.0.0.1",
+      "port": 54985,
+      "internal_port": 54986,
+      "role": "leader",
+      "term": 6,
+      "next_index": [1],
+      "match_index": [0],
+      "log": [
+        {
+          "term": 1,
+          "index": 1,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 2,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "cat" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 3,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 4,
+          "index": 4,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs x 2!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 6,
+          "index": 5,
+          "command": {
+            "endpoint": "message",
+            "method": "GET",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        }
+      ]
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 54987,
+      "internal_port": 54988,
+      "term": 6,
+      "log": [
+        {
+          "term": 1,
+          "index": 1,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 2,
+          "command": {
+            "endpoint": "topic",
+            "method": "PUT",
+            "body": { "topic": "cat" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 1,
+          "index": 3,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 4,
+          "index": 4,
+          "command": {
+            "endpoint": "message",
+            "method": "PUT",
+            "body": { "topic": "dog", "message": "I love dogs x 2!" }
+          },
+          "result": ""
+        },
+
+        {
+          "term": 6,
+          "index": 5,
+          "command": {
+            "endpoint": "message",
+            "method": "GET",
+            "body": { "topic": "dog" }
+          },
+          "result": ""
+        }
+      ]
+    }
+  ]
+}
